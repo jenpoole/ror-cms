@@ -1,0 +1,10 @@
+// public path for category
+= render 'layouts/nav'
+%h1 Category: #{@category.name}
+// for each page in category, include page title, timestamp, and body contents
+-@category.pages.each do |page|
+    %article.clearfix
+        %h2=link_to page.title, url_for_page(page)
+        %p.text-muted=page.created_at.to_formatted_s :long
+        =page.body.html_safe
+    %hr    

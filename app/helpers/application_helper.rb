@@ -3,7 +3,7 @@ module ApplicationHelper
     # if page slug exists, display slug
     # otherwise, display page id
     def url_for_page page
-        if page.slug.present?
+        root_path + if page.slug.present?
             page.slug
         else
             "pages/#{page.id}"

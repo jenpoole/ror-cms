@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
-  # show-only public path for pages without slugs
+  
+  # public path for categories
+  resources :categories, only: [:show]
+  # public path for pages without slugs
   resources :pages, only: [:show]
 
-  # create paths /admin/pages
+  # create paths ../admin/pages
   namespace :admin do
-    resources :pages 
+    resources :pages
+    resources :categories
   end
   
   # loop through each page (that has a slug) and create route based on their slug
@@ -12,8 +16,8 @@ Rails.application.routes.draw do
     get "/#{page.slug}", controller: "pages", action: "show", id: page.id
   end
   
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  # site root routed with "root"
+  root 'welcome#index'
 
   
 end
